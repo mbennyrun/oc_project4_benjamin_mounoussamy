@@ -2,31 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Spot - Bootstrap Freelance Template</title>
+  <title>{% block title %}Bienvenue sur le site du Louvres{% endblock %}</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
 
+{% block stylesheets %}
+
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="icon" href="{{ asset('img/favicon.png') }}">
+  <link rel="apple-touch-icon" href="{{ asset('img/apple-touch-icon.png') }}">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Raleway:400,300,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Raleway:400,300,700,900') }}">
 
   <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('lib/bootstrap/css/bootstrap.css') }}">
 
   <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('lib/font-awesome/css/font-awesome.min.css') }}">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
-
-{% block stylesheets %}
-  <link rel="stylesheet" href="{{ asset('lib/bootstrap/css/bootstrap.css') }}">
-  <link rel="stylesheet" href="{{ asset('lib/font-awesome/css/font-awesome.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 {% endblock %}
 
   <!-- =======================================================
@@ -77,74 +75,14 @@
   </div>
   <!-- headerwrap -->
 
-  <div class="container w">
-    <div class="row centered">
-      <br><br>
-      <div class="col-lg-4">
-        <i class="fa fa-heart"></i>
-        <h4>DESIGN</h4>
-        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-      </div>
-      <!-- col-lg-4 -->
-
-      <div class="col-lg-4">
-        <i class="fa fa-laptop"></i>
-        <h4>BOOTSTRAP</h4>
-        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-      </div>
-      <!-- col-lg-4 -->
-
-      <div class="col-lg-4">
-        <i class="fa fa-trophy"></i>
-        <h4>SUPPORT</h4>
-        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-      </div>
-      <!-- col-lg-4 -->
-    </div>
-    <!-- row -->
-    <br>
-    <br>
-  </div>
-  <!-- container -->
-
-  <!-- PORTFOLIO SECTION -->
-  <div id="dg">
-    <div class="container">
-      <div class="row centered">
-        <h4>LATEST WORKS</h4>
-        <br>
-        <div class="col-lg-4">
-          <div class="tilt">
-            <a href="#"><img src="img/p01.png" alt=""></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="tilt">
-            <a href="#"><img src="img/p03.png" alt=""></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="tilt">
-            <a href="#"><img src="img/p02.png" alt=""></a>
-          </div>
-        </div>
-      </div>
-      <!-- row -->
-    </div>
-    <!-- container -->
-  </div>
-  <!-- DG -->
 
   <!-- FEATURE SECTION -->
   <div class="container wb">
     <div class="row centered">
       <br><br>
       <div class="col-lg-8 col-lg-offset-2">
-        <h4>WE CREATE FIRST CLASS DESIGN</h4>
-        <p>By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s
-          when the brand can truly flex its muscles.</p>
+        {% block body %}
+        {% endblock %}
         <p><br/><br/></p>
       </div>
       <div class="col-lg-2"></div>
@@ -156,45 +94,6 @@
   </div>
   <!-- container -->
 
-  <div id="lg">
-    <div class="container">
-      <div class="row centered">
-        <h4>OUR AWESOME CLIENTS</h4>
-        <div class="col-lg-2 col-lg-offset-1">
-          <img src="img/c01.gif" alt="">
-        </div>
-        <div class="col-lg-2">
-          <img src="img/c02.gif" alt="">
-        </div>
-        <div class="col-lg-2">
-          <img src="img/c03.gif" alt="">
-        </div>
-        <div class="col-lg-2">
-          <img src="img/c04.gif" alt="">
-        </div>
-        <div class="col-lg-2">
-          <img src="img/c05.gif" alt="">
-        </div>
-      </div>
-      <!-- row -->
-    </div>
-    <!-- container -->
-  </div>
-  <!-- dg -->
-
-  <div id="r">
-    <div class="container">
-      <div class="row centered">
-        <div class="col-lg-8 col-lg-offset-2">
-          <h4>WE ARE STORYTELLERS. BRANDS ARE OUR SUBJECTS. DESIGN IS OUR VOICE.</h4>
-          <p>We believe ideas come from everyone, everywhere. At BlackTie, everyone within our agency walls is a designer in their own right. And there are a few principles we believe—and we believe everyone should believe—about our design craft. These truths
-            drive us, motivate us, and ultimately help us redefine the power of design.</p>
-        </div>
-      </div>
-      <!-- row -->
-    </div>
-    <!-- container -->
-  </div>
 
   <!-- FOOTER -->
   <div id="f">
@@ -283,19 +182,27 @@
     </div>
   </div>
 
+{% block javascripts %}
+
   <!-- JavaScript Libraries -->
+  <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('lib/php-mail-form/validate.js') }}"></script>
+  <script src="{{ asset('lib/chart/chart.js') }}"></script>
+
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   <script src="lib/php-mail-form/validate.js"></script>
   <script src="lib/chart/chart.js"></script>
 
-{% block javascripts %}
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-  <script src="{{ asset('js/bootstrap.js') }}"></script>
-  {% endblock %}
-
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
+
+  <script src="js/main.js"></script>
+
+{% endblock %}
+
+
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 20 oct. 2018 à 04:26
+-- Généré le :  mer. 31 oct. 2018 à 11:11
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -32,13 +32,12 @@ DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `booking_date` datetime NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `rate` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `total_price` double NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `booking_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -49,15 +48,14 @@ CREATE TABLE IF NOT EXISTS `booking` (
 DROP TABLE IF EXISTS `tickets`;
 CREATE TABLE IF NOT EXISTS `tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `booking_date` datetime NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `rate` int(11) NOT NULL,
-  `booking_code` int(11) NOT NULL,
+  `id_booking` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `price` double NOT NULL,
+  `birth_date` datetime NOT NULL,
+  `reduce` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
