@@ -2,3 +2,15 @@ services:
 #    oc_louvres.example:
 #        class: OC\LouvresBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    oc_louvres.validator.closedday:                              
+            class: OC\LouvresBundle\Validator\ClosedDayValidator     
+            arguments: ["@request_stack", "@doctrine.orm.entity_manager"] 
+            tags:
+                - { name: validator.constraint_validator, alias: oc_louvres_closedday }
+                
+    oc_louvres.validator.publicholiday:                              
+            class: OC\LouvresBundle\Validator\PublicHolidayValidator     
+            arguments: ["@request_stack", "@doctrine.orm.entity_manager"] 
+            tags:
+                - { name: validator.constraint_validator, alias: oc_louvres_publicholiday }

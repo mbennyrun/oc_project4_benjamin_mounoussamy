@@ -24,6 +24,10 @@
 
   <!-- Main Stylesheet File -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  
+  <!-- Datepicker File -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
 
 {% endblock %}
 
@@ -190,15 +194,17 @@
   <script src="{{ asset('lib/php-mail-form/validate.js') }}"></script>
   <script src="{{ asset('lib/chart/chart.js') }}"></script>
 
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="lib/php-mail-form/validate.js"></script>
-  <script src="lib/chart/chart.js"></script>
-
+  <!-- Datepicker -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+  } );
+  </script>
+  
   <!-- Template Main Javascript File -->
-  <script src="js/main.js"></script>
-
-  <script src="js/main.js"></script>
+  <script src="{{ asset('js/main.js') }}"></script>
 
 {% endblock %}
 

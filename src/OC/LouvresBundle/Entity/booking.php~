@@ -3,9 +3,6 @@
 namespace OC\LouvresBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use OC\LouvresBundle\Validator\ClosedDay;
-use OC\LouvresBundle\Validator\PublicHoliday;
 
 /**
  * booking
@@ -26,9 +23,6 @@ class booking
 
     /**
      * @var \DateTime
-     * @Assert\DateTime
-     * @ClosedDay()
-     * @PublicHoliday()
      *
      * @ORM\Column(name="booking_date", type="datetime")
      */
@@ -246,43 +240,5 @@ class booking
     public function getTickets()
     {
         return $this->tickets;
-    }
-
-    /**
-     * Set ticketsNumber
-     *
-     * @param integer $ticketsNumber
-     *
-     * @return booking
-     */
-    public function setTicketsNumber($ticketsNumber)
-    {
-        $this->ticketsNumber = $ticketsNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get ticketsNumber
-     *
-     * @return integer
-     */
-    public function getTicketsNumber()
-    {
-        return $this->ticketsNumber;
-    }
-    
-    public function isClosed($weekDays) 
-    {
-        $closedDays = array('tuesday', 'sunday');
-        
-        if (preg_match('#'.implode('|', $closedDays).'#', $this->getContent())) {
-      // La règle est violée, on définit l'erreur
-      $context
-        ->atPath('content')                                                   // attribut de l'objet qui est violé
-        ->addViolation() // ceci déclenche l'erreur, ne l'oubliez pas
-      ;
-    }
-        
     }
 }

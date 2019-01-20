@@ -1,0 +1,13 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Réservation - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Réservation</h2>
+
+{{ include("OCLouvresBundle:Booking:form.html.twig") }}
+
+{% endblock %}
