@@ -1,7 +1,0 @@
-oc_louvres_homepage:
-    path:     /
-    defaults: { _controller: OCLouvresBundle:Default:index }
-
-booking:
-    path:     /reservation
-    defaults: { _controller: OCLouvresBundle:Booking:booking }
