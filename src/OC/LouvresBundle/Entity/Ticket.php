@@ -5,12 +5,12 @@ namespace OC\LouvresBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * tickets
+ * ticket
  *
- * @ORM\Table(name="tickets")
- * @ORM\Entity(repositoryClass="OC\LouvresBundle\Repository\ticketsRepository")
+ * @ORM\Table(name="ticket")
+ * @ORM\Entity(repositoryClass="TicketRepository")
  */
-class tickets
+class Ticket
 {
     /**
      * @var int
@@ -22,7 +22,7 @@ class tickets
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="OC\LouvresBundle\Entity\booking", inversedBy="tickets", cascade="persist")
+     * @ORM\ManyToOne(targetEntity="OC\LouvresBundle\Entity\Booking", inversedBy="tickets", cascade="persist")
      * @ORM\JoinColumn(name="booking_id", referencedColumnName="id")
      */
     private $booking;
@@ -61,7 +61,7 @@ class tickets
      * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
-    
+
     /**
      * @var int
      *
@@ -85,7 +85,7 @@ class tickets
      *
      * @param integer $idBooking
      *
-     * @return tickets
+     * @return Ticket
      */
     public function setIdBooking($idBooking)
     {
@@ -109,7 +109,7 @@ class tickets
      *
      * @param string $name
      *
-     * @return tickets
+     * @return Ticket
      */
     public function setName($name)
     {
@@ -133,7 +133,7 @@ class tickets
      *
      * @param string $firstName
      *
-     * @return tickets
+     * @return Ticket
      */
     public function setFirstName($firstName)
     {
@@ -157,7 +157,7 @@ class tickets
      *
      * @param float $price
      *
-     * @return tickets
+     * @return Ticket
      */
     public function setPrice($price)
     {
@@ -181,7 +181,7 @@ class tickets
      *
      * @param \DateTime $birthDate
      *
-     * @return tickets
+     * @return Ticket
      */
     public function setBirthDate($birthDate)
     {
@@ -205,7 +205,7 @@ class tickets
      *
      * @param integer $reduce
      *
-     * @return tickets
+     * @return Ticket
      */
     public function setReduce($reduce)
     {
@@ -227,11 +227,11 @@ class tickets
     /**
      * Set booking
      *
-     * @param \OC\LouvresBundle\Entity\booking $booking
+     * @param \OC\LouvresBundle\Entity\Booking $booking
      *
-     * @return tickets
+     * @return Ticket
      */
-    public function setBooking(\OC\LouvresBundle\Entity\booking $booking = null)
+    public function setBooking(\OC\LouvresBundle\Entity\Booking $booking = null)
     {
         $this->booking = $booking;
 
@@ -241,7 +241,7 @@ class tickets
     /**
      * Get booking
      *
-     * @return \OC\LouvresBundle\Entity\booking
+     * @return \OC\LouvresBundle\Entity\Booking
      */
     public function getBooking()
     {
@@ -253,7 +253,7 @@ class tickets
      *
      * @param string $country
      *
-     * @return tickets
+     * @return Ticket
      */
     public function setCountry($country)
     {

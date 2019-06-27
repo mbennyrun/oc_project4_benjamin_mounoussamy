@@ -3,14 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/test/src/OC/LouvresBundle/Validator/ClosedDayValidator.php</file>
-            <file>file:/C:/wamp64/www/test/src/OC/LouvresBundle/Entity/tickets.php</file>
-            <file>file:/C:/wamp64/www/test/src/OC/LouvresBundle/Resources/config/services.yml</file>
-            <file>file:/C:/wamp64/www/test/src/OC/LouvresBundle/Controller/BookingController.php</file>
-            <file>file:/C:/wamp64/www/test/src/OC/LouvresBundle/Validator/ClosedDay.php</file>
-            <file>file:/C:/wamp64/www/test/src/OC/LouvresBundle/Entity/booking.php</file>
-            <file>file:/C:/wamp64/www/test/src/OC/LouvresBundle/Validator/PublicHolidayValidator.php</file>
-            <file>file:/C:/wamp64/www/test/src/OC/LouvresBundle/Validator/PublicHoliday.php</file>
+            <file>file:/C:/wamp64/www/oc_project4_benjamin_mounoussamy/src/OC/LouvresBundle/Resources/config/routing.yml</file>
+            <file>file:/C:/wamp64/www/oc_project4_benjamin_mounoussamy/src/OC/LouvresBundle/Controller/BookingController.php</file>
+            <file>file:/C:/wamp64/www/oc_project4_benjamin_mounoussamy/src/OC/LouvresBundle/Recap/CalPrice.php</file>
+            <file>file:/C:/wamp64/www/oc_project4_benjamin_mounoussamy/src/OC/LouvresBundle/Recap/Charge.php</file>
+            <file>file:/C:/wamp64/www/oc_project4_benjamin_mounoussamy/app/Resources/views/layout.html.twig</file>
+            <file>file:/C:/wamp64/www/oc_project4_benjamin_mounoussamy/src/OC/LouvresBundle/Resources/config/services.yml</file>
+            <file>file:/C:/wamp64/www/oc_project4_benjamin_mounoussamy/src/OC/LouvresBundle/Resources/views/Booking/form.html.twig</file>
+            <file>file:/C:/wamp64/www/oc_project4_benjamin_mounoussamy/src/OC/LouvresBundle/Entity/tickets.php</file>
+            <file>file:/C:/wamp64/www/oc_project4_benjamin_mounoussamy/src/OC/LouvresBundle/Resources/views/Booking/recap.html.twig</file>
+            <file>file:/C:/wamp64/www/oc_project4_benjamin_mounoussamy/src/OC/LouvresBundle/Entity/booking.php</file>
         </group>
     </open-files>
 </project-private>

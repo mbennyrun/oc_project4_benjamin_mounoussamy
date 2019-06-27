@@ -1,0 +1,152 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Paiement - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Vos tickets</h2>
+
+  <div>
+
+    <ul>
+      {{ dump (app.session.get('booking')) }}
+      {% for ticket in app.session.get('booking').tickets %}
+
+        {{ dump (ticket) }}
+        <li>Billet n° {{ loop.index }}</li>
+        <li>Nom : {{ ticket.name }}</li>
+        <li>Prénom : {{ ticket.firstname }}</li>
+        <li>Prix : {{ ticket.price }} €</li>
+        <li>Réduction : {% if ticket.reduce == 1 %} Oui {% else %} Non {% endif %}</li>
+      {% else %}
+        <li>Pas de billet trouvé.</li>
+      {% endfor %}
+    </ul>
+
+</div>
+
+{{ dump (app) }}
+
+<h2>Paiement</h2>
+
+    <div>Total à payer : {{ app.session.get('booking').totalprice }} €</div>
+
+<form action="{{ path ('charge') }}" method="post" id="payment-form">
+<div class="card-errors"></div>
+
+<div class="form-row">
+  <label>
+    <span>Numéro de Carte</span>
+    <input type="text" size="20" data-stripe="number">
+  </label>
+</div>
+
+<div class="form-row">
+  <label>
+    <span>Expiration (MM/AA)</span>
+    <input type="text" size="2" data-stripe="exp_month">
+  </label>
+  <span> / </span>
+  <input type="text" size="2" data-stripe="exp_year">
+</div>
+
+<div class="form-row">
+  <label>
+    <span>CVC</span>
+    <input type="text" size="4" data-stripe="cvc">
+  </label>
+</div>
+
+<div class="form-row">
+  <label>
+    <span>Code Postal</span>
+    <input type="text" size="6" data-stripe="address_zip">
+  </label>
+</div>
+
+<input type="submit" class="submit" value="Payer">
+</form>
+
+{% block javascripts %}
+
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <script>
+// Create a Stripe client.
+var stripe = Stripe('pk_test_63r3lRN6LcyM0vQw2CEF7sAx');
+
+// Create an instance of Elements.
+var elements = stripe.elements();
+
+// Custom styling can be passed to options when creating an Element.
+// (Note that this demo uses a wider set of styles than the guide below.)
+var style = {
+base: {
+  color: '#32325d',
+  fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+  fontSmoothing: 'antialiased',
+  fontSize: '16px',
+  '::placeholder': {
+    color: '#aab7c4'
+  }
+},
+invalid: {
+  color: '#fa755a',
+  iconColor: '#fa755a'
+}
+};
+
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
+
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+
+// Handle real-time validation errors from the card Element.
+card.addEventListener('change', function(event) {
+var displayError = document.getElementById('card-errors');
+if (event.error) {
+  displayError.textContent = event.error.message;
+} else {
+  displayError.textContent = '';
+}
+});
+
+// Handle form submission.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+event.preventDefault();
+
+stripe.createToken(card).then(function(result) {
+  if (result.error) {
+    // Inform the user if there was an error.
+    var errorElement = document.getElementById('card-errors');
+    errorElement.textContent = result.error.message;
+  } else {
+    // Send the token to your server.
+    stripeTokenHandler(result.token);
+  }
+});
+});
+
+// Submit the form with the token ID.
+function stripeTokenHandler(token) {
+// Insert the token ID into the form so it gets submitted to the server
+var form = document.getElementById('payment-form');
+var hiddenInput = document.createElement('input');
+hiddenInput.setAttribute('type', 'hidden');
+hiddenInput.setAttribute('name', 'stripeToken');
+hiddenInput.setAttribute('value', token.id);
+form.appendChild(hiddenInput);
+
+// Submit the form
+form.submit();
+}
+</script>
+
+{% endblock %}
+
+{% endblock %}
+

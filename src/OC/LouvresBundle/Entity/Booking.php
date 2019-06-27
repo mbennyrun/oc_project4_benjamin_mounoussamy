@@ -3,18 +3,29 @@
 namespace OC\LouvresBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use OC\LouvresBundle\Validator\NotAfterFourteen;
+use OC\LouvresBundle\Validator\NotHoliday;
+use OC\LouvresBundle\Validator\NotTuesday;
+use OC\LouvresBundle\Validator\NotSunday;
+use OC\LouvresBundle\Validator\NotPastDay;
 use Symfony\Component\Validator\Constraints as Assert;
-use OC\LouvresBundle\Validator\ClosedDay;
-use OC\LouvresBundle\Validator\PublicHoliday;
+use OC\LouvresBundle\Validator\SoldTickets;
 
 /**
  * booking
  *
  * @ORM\Table(name="booking")
- * @ORM\Entity(repositoryClass="OC\LouvresBundle\Repository\bookingRepository")
+ * @NotAfterFourteen()
+ * @ORM\Entity(repositoryClass="OC\LouvresBundle\Repository\BookingRepository")
  */
-class booking
+class Booking
 {
+    const TYPE_DAY = "Journée";
+    const TYPE_HALF_DAY = "Demi-journée";
+    const REDUCE_TRUE = 1;
+    const REDUCE_FALSE = 0;
+    const FULL_DAY_MAX_HOUR = "14:00";
+    const MAX_SOLD_TICKETS = 10;
     /**
      * @var int
      *
@@ -26,9 +37,11 @@ class booking
 
     /**
      * @var \DateTime
-     * @Assert\DateTime
-     * @ClosedDay()
-     * @PublicHoliday()
+     * @NotTuesday()
+     * @NotSunday()
+     * @NotHoliday()
+     * @NotPastDay()
+     * @Assert\DateTime()
      *
      * @ORM\Column(name="booking_date", type="datetime")
      */
@@ -58,6 +71,7 @@ class booking
     /**
      *
      * @var integer
+     * @SoldTickets()
      * 
      * @ORM\Column(name="tickets_number", type="integer")
      */
@@ -71,7 +85,7 @@ class booking
 
     /**
     *
-     * @ORM\OneToMany(targetEntity="OC\LouvresBundle\Entity\tickets", mappedBy="booking", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="OC\LouvresBundle\Entity\ticket", mappedBy="booking", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="Tickets")
      *
      */
@@ -92,7 +106,7 @@ class booking
      *
      * @param \DateTime $bookingDate
      *
-     * @return booking
+     * @return Booking
      */
     public function setBookingDate($bookingDate)
     {
@@ -116,7 +130,7 @@ class booking
      *
      * @param string $type
      *
-     * @return booking
+     * @return Booking
      */
     public function setType($type)
     {
@@ -140,7 +154,7 @@ class booking
      *
      * @param float $totalPrice
      *
-     * @return booking
+     * @return Booking
      */
     public function setTotalPrice($totalPrice)
     {
@@ -164,7 +178,7 @@ class booking
      *
      * @param string $email
      *
-     * @return booking
+     * @return Booking
      */
     public function setEmail($email)
     {
@@ -188,7 +202,7 @@ class booking
      *
      * @param string $bookingCode
      *
-     * @return booking
+     * @return Booking
      */
     public function setBookingCode($bookingCode)
     {
@@ -217,11 +231,11 @@ class booking
     /**
      * Add ticket
      *
-     * @param \OC\LouvresBundle\Entity\tickets $ticket
+     * @param \OC\LouvresBundle\Entity\Ticket $ticket
      *
-     * @return booking
+     * @return Booking
      */
-    public function addTicket(\OC\LouvresBundle\Entity\tickets $ticket)
+    public function addTicket(\OC\LouvresBundle\Entity\Ticket $ticket)
     {
         $this->tickets[] = $ticket;
 
@@ -231,9 +245,9 @@ class booking
     /**
      * Remove ticket
      *
-     * @param \OC\LouvresBundle\Entity\tickets $ticket
+     * @param \OC\LouvresBundle\Entity\Ticket $ticket
      */
-    public function removeTicket(\OC\LouvresBundle\Entity\tickets $ticket)
+    public function removeTicket(\OC\LouvresBundle\Entity\Ticket $ticket)
     {
         $this->tickets->removeElement($ticket);
     }
@@ -253,7 +267,7 @@ class booking
      *
      * @param integer $ticketsNumber
      *
-     * @return booking
+     * @return Booking
      */
     public function setTicketsNumber($ticketsNumber)
     {

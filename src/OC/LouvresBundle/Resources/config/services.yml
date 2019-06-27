@@ -3,14 +3,42 @@ services:
 #        class: OC\LouvresBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
 
-    oc_louvres.validator.closedday:                              
-            class: OC\LouvresBundle\Validator\ClosedDayValidator     
-            arguments: ["@request_stack", "@doctrine.orm.entity_manager"] 
-            tags:
-                - { name: validator.constraint_validator, alias: oc_louvres_closedday }
-                
-    oc_louvres.validator.publicholiday:                              
-            class: OC\LouvresBundle\Validator\PublicHolidayValidator     
-            arguments: ["@request_stack", "@doctrine.orm.entity_manager"] 
-            tags:
-                - { name: validator.constraint_validator, alias: oc_louvres_publicholiday }
+    oc_louvres.price:
+        class: OC\LouvresBundle\Recap\Price
+
+    oc_louvres.validator.closedday:
+        class: OC\LouvresBundle\Validator\ClosedDayValidator
+        arguments: ["@request_stack", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator, alias: oc_louvres_closedday }
+
+    oc_louvres.validator.nottuesday:
+        class: OC\LouvresBundle\Validator\NotTuesdayValidator
+        tags:
+            - { name: validator.constraint_validator, alias: oc_louvres_nottuesday }
+
+    oc_louvres.validator.notsunsday:
+        class: OC\LouvresBundle\Validator\NotSundayValidator
+        tags:
+            - { name: validator.constraint_validator, alias: oc_louvres_notsunday }
+
+    oc_louvres.validator.notpastday:
+        class: OC\LouvresBundle\Validator\NotPastDayValidator
+        tags:
+            - { name: validator.constraint_validator, alias: oc_louvres_notpastday }
+
+    oc_louvres.validator.notafterfourteen:
+        class: OC\LouvresBundle\Validator\NotAfterFourteenValidator
+        tags:
+            - { name: validator.constraint_validator, alias: oc_louvres_notafterfourteen }
+
+    oc_louvres.validator.notholiday:
+        class: OC\LouvresBundle\Validator\NotHolidayValidator
+        tags:
+            - { name: validator.constraint_validator, alias: oc_louvres_notholiday }
+
+    oc_louvres.validator.soldtickets:                              
+        class: OC\LouvresBundle\Validator\SoldTicketsValidator     
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator, alias: oc_louvres_soldtickets }

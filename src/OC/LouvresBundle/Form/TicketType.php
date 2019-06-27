@@ -2,16 +2,16 @@
 
 namespace OC\LouvresBundle\Form;
 
+use OC\LouvresBundle\Entity\Ticket;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class ticketsType extends AbstractType
+class TicketType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
   {
@@ -20,14 +20,14 @@ class ticketsType extends AbstractType
       ->add('first_name',     TextType::class)
       ->add('country',    CountryType::class)
       ->add('birth_date',   BirthdayType::class)
-      ->add('reduce', CheckboxType::class);
+      ->add('reduce', CheckboxType::class, array('required' => false));
   }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OC\LouvresBundle\Entity\Ticket'
+            'data_class' => Ticket::class
         ));
     }
 
